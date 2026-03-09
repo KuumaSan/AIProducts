@@ -1,8 +1,9 @@
 每天早上 7:30（Asia/Shanghai），为 Telegram 用户 kuma 生成一份 AI 日报，并主动发送到 Telegram 私聊 7533200346。
 
-任务目标分两部分：
+任务目标分三部分：
 A. 生成并发送日报
 B. 更新工作区里的项目追踪表 tracking/ai-projects.csv
+C. 如果文件有变化，则自动提交并推送到 GitHub 仓库
 
 A. 日报要求：
 1. 先使用 web_search（Brave）查找最近 72 小时内新出现或热度明显上升的 AI 产品；如果当天结果不足，再放宽到最近 7 天。
@@ -42,7 +43,16 @@ B. 追踪表更新要求：
 7. first_seen 只在新项目首次加入时填写当天日期，旧项目不要改它。
 8. 更新 CSV 时，保持合法 CSV 格式，必要时正确使用引号。
 
+C. Git 自动提交要求：
+1. 在完成 CSV 更新后，检查 git 工作区是否有 tracking/ 或 reports/ 下的变化。
+2. 如果有变化，执行：
+   - git add tracking reports
+   - git commit -m "Daily AI tracker update YYYY-MM-DD"
+   - git push origin master
+3. 如果没有变化，就不要强行提交。
+4. 不要提交任何密钥、环境变量或无关临时文件。
+
 发送方式：
 - 使用 message 工具主动发送到 channel=telegram, target=telegram:7533200346
 - 先发 1 条总览，再逐条发产品消息
-- 完成日报发送与 CSV 更新后，最终文本回复只输出 NO_REPLY，避免重复投递
+- 完成日报发送、CSV 更新和 git push（如有变化）后，最终文本回复只输出 NO_REPLY，避免重复投递
