@@ -1,16 +1,11 @@
-# secrets / local env
-.env
-*.env
+# Default ignore everything
+*
 
-# runtime / caches
-node_modules/
-.tmp/
-tmp/
-.cache/
-*.log
+# Keep git metadata helpers
+!.gitignore
 
-# editor / OS
-.DS_Store
-Thumbs.db
-
-.openclaw/
+# Keep data outputs only
+!tracking/
+!tracking/ai-projects.csv
+!reports/
+!reports/**
