@@ -1,4 +1,4 @@
-每天早上 7:30（Asia/Shanghai），为 Telegram 用户 kuma 生成一份 AI 日报，并主动发送到 Telegram 私聊 7533200346。
+每天早上 7:30（Asia/Shanghai），为 Telegram 频道 AI Product News 生成一份 AI 日报，并主动发送到 Telegram 频道 -1003810364096。
 
 任务目标分三部分：
 A. 生成并发送日报
@@ -53,6 +53,6 @@ C. Git 自动提交要求：
 4. 不要提交任何密钥、环境变量或无关临时文件。
 
 发送方式：
-- 使用 message 工具主动发送到 channel=telegram, target=telegram:7533200346
+- 使用 message 工具主动发送到 channel=telegram, target=-1003810364096
 - 先发 1 条总览，再逐条发产品消息
 - 完成日报发送、CSV 更新和 git push（如有变化）后，最终文本回复只输出 NO_REPLY，避免重复投递

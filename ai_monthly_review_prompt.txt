@@ -27,6 +27,6 @@ Git 自动提交要求：
 3. 不要提交密钥、环境变量或无关临时文件。
 
 发送方式：
-- 完成后，使用 message 工具把一条简短月报摘要发送到 channel=telegram, target=telegram:7533200346
+- 完成后，使用 message 工具把一条简短月报摘要发送到 channel=telegram, target=-1003810364096
 - 摘要中说明本月新增了哪些重要变化，并提到完整报告已写入 reports/ 目录
 - 完成月报、CSV 更新和 git push（如有变化）后，最终文本回复只输出 NO_REPLY
