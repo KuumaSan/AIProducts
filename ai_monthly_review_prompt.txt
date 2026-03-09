@@ -1,0 +1,23 @@
+每月 1 号上午 9:00（Asia/Shanghai），对工作区里的 tracking/ai-projects.csv 做一次月度巡检。
+
+目标：
+1. 读取 tracking/ai-projects.csv 中的全部项目。
+2. 对每个项目使用 web_search（Brave）查最新进展，重点看：
+   - 是否仍在持续更新/活跃
+   - 是否明显停更
+   - 是否官网失效、产品关闭、团队解散、倒闭
+   - 是否被收购、改名、转型
+3. 更新 CSV 中这些列：last_updated、status、last_checked、source_url、notes。
+4. 在 reports/ 目录下生成一份当月报告，文件名格式：YYYY-MM-ai-project-review.md
+
+月报内容要求：
+- 按领域分组
+- 每个项目标注当前状态：活跃 / 降温 / 停止更新 / 关闭 / 被收购 / 转型 / 不确定
+- 总结本月最值得继续跟踪的项目
+- 点名已经明显掉队或消失的项目
+- 不要一味乐观，要有批判性判断
+
+发送方式：
+- 完成后，使用 message 工具把一条简短月报摘要发送到 channel=telegram, target=telegram:7533200346
+- 摘要中说明本月新增了哪些重要变化，并提到完整报告已写入 reports/ 目录
+- 最终文本回复只输出 NO_REPLY

@@ -1,0 +1,6 @@
+project,domain,first_seen,last_updated,need,why_hot,verdict,status,last_checked,source_url,notes
+GPT-5.4,基础模型 / 平台,2026-03-09,2026-03-09,"复杂专业任务、长上下文处理、多工具协同","底层模型升级，主打专业工作能力、100万 token 上下文与更高工具调用效率","真需求","活跃",2026-03-09,https://techcrunch.com/2026/03/05/openai-launches-gpt-5-4-with-pro-and-thinking-versions/,更像基础设施升级而非单点爆款
+Cursor Automations,AI 编程 / 开发工具,2026-03-09,2026-03-09,"管理越来越多 coding agents、自动触发工程流程","切中真实开发工作流，能把审查、告警响应、周报等流程自动化","真需求","活跃",2026-03-09,https://techcrunch.com/2026/03/05/cursor-is-rolling-out-a-new-system-for-agentic-coding/,重点关注权限边界、误触发与审计
+Amazon Connect Health,医疗 / 健康 AI,2026-03-09,2026-03-09,"预约、患者验证、文书、医疗行政自动化","医疗行政成本高且预算明确，AWS 又把 HIPAA 合规和 EHR 集成一起打包","真需求","活跃",2026-03-09,https://techcrunch.com/2026/03/05/aws-amazon-connect-health-ai-agent-platform-health-care-providers/,慢热但扎实；落地速度比 demo 重要
+Luma Agents,多模态生成 / 创意工具,2026-03-09,2026-03-09,"广告营销和品牌内容的多模态创作效率","创意 AI 展示效果直观，统一多模态 agent 叙事强，容易形成传播","半真需求","活跃",2026-03-09,https://techcrunch.com/2026/03/05/exclusive-luma-launches-creative-ai-agents-powered-by-its-new-unified-intelligence-models/,要警惕“演示惊艳、长期留存一般”的风险
+DiligenceSquared,企业服务 / SaaS,2026-03-09,2026-03-09,"降低并购尽调中的访谈和商业研究成本","把 AI 语音访谈 + 人工校验打包成更便宜的尽调服务，切中 PE/投行高客单价场景","真需求","活跃",2026-03-09,https://techcrunch.com/2026/03/05/diligencesquared-uses-ai-voice-agents-to-make-ma-research-affordable/,高价值垂直场景；规模受客户总量限制但付费意愿强

@@ -1,0 +1,48 @@
+每天早上 7:30（Asia/Shanghai），为 Telegram 用户 kuma 生成一份 AI 日报，并主动发送到 Telegram 私聊 7533200346。
+
+任务目标分两部分：
+A. 生成并发送日报
+B. 更新工作区里的项目追踪表 tracking/ai-projects.csv
+
+A. 日报要求：
+1. 先使用 web_search（Brave）查找最近 72 小时内新出现或热度明显上升的 AI 产品；如果当天结果不足，再放宽到最近 7 天。
+2. 优先选 3-5 个产品，避免泛泛而谈的行业新闻。
+3. 对每个产品必须回答：
+   - 它解决的需求是什么
+   - 它为什么会火
+   - 这个需求是真需求、半真需求还是伪需求
+   - 前景如何
+4. 必须保持批判性思维，不能一味吹捧；如果是噱头大于价值，要明确说出来。
+5. 输出格式必须适合 Telegram 手机版阅读：
+   - 第 1 条消息：总览（日期、今日一句话判断、今天选了哪些产品）
+   - 后续每个产品单独 1 条消息
+   - 每条产品消息都控制在适合手机阅读的长度
+   - 每条产品消息最后一行单独放“来源：”和 URL，方便 Telegram link preview 正常显示
+6. 不要把多个产品塞进一条消息里。
+7. 如果当天没有足够值得写的新产品，就发一条简短总览，明确说明“今天没有特别值得跟踪的新 AI 产品发布”，不要硬凑。
+
+B. 追踪表更新要求：
+1. 表格文件是 tracking/ai-projects.csv。
+2. 如果日报中出现了新的项目，就追加一行。
+3. 如果项目已经存在，就更新这些列：last_updated、why_hot、verdict、status、last_checked、source_url、notes。
+4. domain 必须从这些类别中选最合适的一个：
+   - AI 编程 / 开发工具
+   - 多模态生成 / 创意工具
+   - AI Agent / 自动化
+   - 搜索 / 研究工具
+   - 医疗 / 健康 AI
+   - 企业服务 / SaaS
+   - 销售 / 营销
+   - 教育
+   - 基础模型 / 平台
+   - 其他
+5. CSV 列顺序必须保持不变：
+   project,domain,first_seen,last_updated,need,why_hot,verdict,status,last_checked,source_url,notes
+6. status 默认写“活跃”，除非你有明确证据表明项目停更、关闭、被收购或转型。
+7. first_seen 只在新项目首次加入时填写当天日期，旧项目不要改它。
+8. 更新 CSV 时，保持合法 CSV 格式，必要时正确使用引号。
+
+发送方式：
+- 使用 message 工具主动发送到 channel=telegram, target=telegram:7533200346
+- 先发 1 条总览，再逐条发产品消息
+- 完成日报发送与 CSV 更新后，最终文本回复只输出 NO_REPLY，避免重复投递
