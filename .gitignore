@@ -1,11 +1,13 @@
 # Default ignore everything
 *
 
-# Keep git metadata helpers
+# Keep git helper
 !.gitignore
 
-# Keep data outputs only
+# Keep tracker data
 !tracking/
 !tracking/ai-projects.csv
+
+# Keep monthly reports only
 !reports/
-!reports/**
+!reports/*-ai-project-review.md
