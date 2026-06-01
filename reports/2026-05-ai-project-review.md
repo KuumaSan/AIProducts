@@ -1,290 +1,247 @@
-# AI 项目月度巡检报告 — 2026 年 5 月
+# AI 项目月度巡检报告：2026 年 5 月回顾
 
-> 巡检日期：2026-05-01  
-> 数据来源：GitHub Trending（日榜/周榜/Python 榜）、项目仓库、行业新闻  
-> 覆盖项目数：150+  
-> 本月搜索引擎（DuckDuckGo）受限，以 GitHub 实时数据和已有跟踪记录为主要依据
+> 巡检日期：2026-06-01 | 巡检器：kuma | 数据源：tracking/ai-projects.csv
+> 覆盖项目总数：500 | 5 月新增项目：~191 | 5 月活跃事件：~29
 
 ---
 
-## 一、本月关键变化摘要
+## 一、5 月总览
 
-### 🔥 最重大事件
+2026 年 5 月是 AI 行业 **产品化加速+信任危机持续+公众反弹初现** 的月份。
 
-1. **Anthropic 信任危机持续恶化**（第六~第九击）
-   - Cache TTL 降级 → 封杀第三方 → 源码泄露 → Pro 移除 Claude Code → 质量事故复盘 → 4/28 全面宕机 → HERMES.md 计费 Bug → OpenClaw 歧视性封杀
-   - `free-claude-code` 周增 14,666 stars 达 19,190，成为本周 GitHub 全榜热度最高项目之一
-   - 直接催化开发者向 DeepSeek/GPT-5.5/开源方案迁移
-
-2. **DeepSeek V4 发布**（4/25）—— 开源前沿模型新标杆
-   - V4-Pro 1.6T/49B active + V4-Flash 284B/13B active，1M 上下文
-   - HN 1779 分（本月最高），OpenAI/Anthropic API 兼容
-
-3. **GPT-5.5 发布并开放 API**（4/24~25）
-   - Terminal-Bench 2.0 82.7%，FrontierMath Tier 4 35.4%
-   - GPT-5.4 降为次旗舰，发布间隔仅约 5 周
-
-4. **Warp 开源**（4/29）—— 终端+Agent 开发环境
-   - GitHub 全榜连续三天第一，43,496+ stars
-   - OpenAI 赞助，Oz agent 编排平台
-
-5. **SpaceX 600 亿美元收购 Cursor**（4/22 Bloomberg 报道）
-   - AI 工具领域史上最大收购
-   - 引发中立性争议
-
-6. **Microsoft × OpenAI 结束独家协议**（4/28）
-   - OpenAI 可多云分发，Microsoft 加速自研 MAI
-
-7. **PyTorch Lightning 供应链攻击**（5/1）
-   - 恶意代码植入 lightning 2.6.2/2.6.3
-   - 跨 PyPI/npm 蠕虫传播，影响所有 AI 训练环境
+**三大关键趋势：**
+1. **基础模型混战白热化**：Claude Opus 4.8、GPT-5.5 系列持续迭代、Gemini 3.5 Flash（Google I/O）、DeepSeek V4 持续领先、Qwen 3.7-Max、Kimi K2.6、Cohere Command A+ 开源旗舰——六大阵营同时推新。
+2. **Agent Skills 生态爆发**：从社区自发走向平台标准化（OpenAI Skills、HuggingFace Skills、Flutter 官方 Skills、.NET 官方 Skills、Vercel Skills CLI），品类从编码扩展到安全、营销、学术、设计。
+3. **公众反 AI 情绪集中爆发**：HN "Tired of AI" 1961 分、Chrome 静默安装 Gemini Nano 1198 分、DuckDuckGo 搜索量暴涨、VS Code Copilot 强制署名——标志着 AI 从全民欢迎进入选择性抵制阶段。
 
 ---
 
-## 二、按领域分组项目状态
+## 二、按领域分组详评
 
-### 基础模型 / 平台
+### 🔧 AI 编程 / 开发工具（104 项，本月最活跃领域）
 
-| 项目 | 状态 | 判断依据 |
+| 项目 | 状态 | 5 月动态 |
 |------|------|----------|
-| GPT-5.5 | 🟢 活跃 | 发布即开放 API，Terminal-Bench 登顶 |
-| GPT-5.4 | 🟡 降温 | 被 5.5 取代为次旗舰 |
-| DeepSeek V4 | 🟢 活跃 | HN 最高分，开源 SOTA |
-| DeepSeek Engram | 🔴 停止更新 | 最后推送停在 1/14，三个月无代码更新 |
-| Kimi K2.6 | 🟢 活跃 | Apache 2.0 开源，编码基准追平闭源 |
-| Qwen 3.6-Plus/27B/Max | 🟢 活跃 | 三个变体全线覆盖，持续迭代 |
-| Claude Opus 4.7 | 🟢 活跃 | 编码提升 13%，但信任危机影响口碑 |
-| GLM-5.1 / GLM-5-Turbo | 🟢 活跃 | 智谱持续发力 agent 场景 |
-| Gemma 4 | 🟢 活跃 | MedGemma/ShieldGemma 专业变体 |
-| Meta Muse Spark | 🟡 降温 | 概念大于产品，闭源策略与 Meta 开源叙事矛盾 |
-| Dify | 🟢 活跃 | Pre-A 融资后稳步推进 |
-| Onyx | 🟢 活跃 | v3.0 GitHub Trending，21.8k stars |
-| Supermemory | 🟢 活跃 | 20.7k stars，稳步增长 |
-| MemPalace | 🟡 不确定 | 9 天 4.3 万星增速异常，需观察假星风险 |
-| vLLM-Omni | 🟢 活跃 | 4,061 stars，持续增长 |
-| CompactifAI API | 🟡 不确定 | 近一个月无重大公开动态 |
-| OpenViking | 🟡 不确定 | 初始热度后缺乏后续报道 |
-| Xiaomi Hunter Alpha | 🔴 降温 | 话题性消退后无后续产品动态 |
-| Qutwo | 🔴 降温 | 量子+AI 叙事冷却 |
-| Ensu (Ente) | 🟢 活跃 | 本地 AI 赛道持续受关注 |
-| Apfel | 🟢 活跃 | macOS 本地 LLM 解锁方案 |
-| Google TimesFM 2.5 | 🟢 活跃 | BigQuery 集成说明不是实验项目 |
-| Voxtral TTS | 🟢 活跃 | Mistral 企业全栈 |
-| Microsoft VibeVoice | 🟢 活跃 | 45,659→46,082 stars，GitHub Trending 持续 |
-| VoxCPM2 | 🟢 活跃 | 12,279 stars，语音 AI 开源热 |
-| NeuTTS | 🟢 活跃 | 端侧 TTS 新玩家 |
-| Cohere Transcribe | 🟢 活跃 | HF Leaderboard 第一 |
-| NVIDIA PersonaPlex | 🟢 活跃 | 人格可控对话 |
-| Microsoft Agent Lightning | 🟢 活跃 | Agent RL 训练基础设施 |
-| Kronos | 🟡 不确定 | K 线预测学术有价值但实盘高度存疑 |
-| xMemory / TrustGraph | 🟢 活跃 | Agent 记忆/上下文层持续受关注 |
-| DeepSeek DeepEP | 🟢 活跃 | V4 次日开源核心通信库 |
-| Google TurboQuant | 🟢 活跃 | 理论突破级工作 |
-| Thunderbolt (Mozilla) | 🟡 降温 | 1,537 stars，赛道拥挤 |
+| **Claude Opus 4.8** | ✅ 活跃 | 5/28 正式发布，SWE-bench Pro 69.2%，GDPval Elo 1890 超 GPT-5.5，Dynamic Workflows，Fast 模式成本降 1/3 |
+| **GPT-5.5** | ✅ 活跃 | DeepSWE 基准 70%，Rosalind 生物安全扩展，Gartner 命名企业编码 Agent 领导者 |
+| **Codex Everything Update** | ✅ 活跃 | 300 万周活，后台电脑控制+内置浏览器+90+ 插件+Memory 预览 |
+| **Zed 1.0** | ✅ 活跃 | 4/29 发布 1.0 正式版，HN 1421 分，DeltaDB CRDT 同步引擎 |
+| **OpenAI Symphony** | ✅ 活跃 | Elixir 实现，对接 Linear 看板自动调度 Codex agent，22.9K stars |
+| **Warp 开源** | ✅ 活跃 | 连续三天 GitHub 全榜第一，43.5K+ stars，OpenAI 赞助 |
+| **Understand-Anything** | ✅ 活跃 | 47K+ stars，代码理解层品类持续验证 |
+| **CodeGraph** | ✅ 活跃 | 35K+ stars，减少 92% 工具调用 |
+| **free-claude-code** | ✅ 活跃 | 19K+ stars，Anthropic 信任危机最大受益者 |
+| **DeepSeek Reasonix** | ✅ 活跃 | 99.82% 缓存命中率，$12 跑 435M tokens |
+| **ECC** | ✅ 活跃 | 200K+ stars，everything-claude-code 演进为跨平台增强系统 |
+| **Cursor Plugins** | ✅ 活跃 | SpaceX 收购待完成期间持续推进插件生态 |
+| **herdr** | ✅ 活跃 | Rust 编写多 agent 会话管理终端 |
+| **oh-my-pi** | ✅ 活跃 | hash-anchored 编辑+LSP 深度集成 |
+| **Compound Engineering** | ✅ 活跃 | 17.7K stars，80% 规划 20% 执行方法论插件 |
 
-### AI 编程 / 开发工具
+**编程工具关键判断：**
+- Agent Skills 标准化是 5 月最重要的结构性变化，平台方（OpenAI、Google、Microsoft .NET、Flutter）开始主导
+- 假星问题严重：ECC 200K+ stars、garrytan/gstack 96K、taste-skill 30K 等项目增速异常
+- Anthropic 信任危机催生大量替代工具（free-claude-code、9router、DeepClaude 等）
 
-| 项目 | 状态 | 判断依据 |
+### 🤖 AI Agent / 自动化（84 项）
+
+| 项目 | 状态 | 5 月动态 |
 |------|------|----------|
-| Warp Open Source | 🟢 活跃 | 43,496+ stars，GitHub 全榜连续三天第一 |
-| Cursor 3.0 | ⚫ 被收购（待完成） | SpaceX 600 亿美元 |
-| free-claude-code | 🟢 活跃 | 19,190 stars，周增 14,666，Anthropic 信任危机受益者 |
-| Superpowers | 🟢 活跃 | 128k+ stars，GitHub Trending 日榜持续出现 |
-| everything-claude-code | 🟢 活跃 | 126,801 stars，跨 harness 生态扩张 |
-| Matt Pocock Skills | 🟢 活跃 | 49,494 stars，周增 30,945（本周全榜第二） |
-| GitHub Spec-Kit | 🟢 活跃 | 84,135 stars，Spec-Driven Development 被广泛采纳 |
-| Claude-Mem | 🟢 活跃 | 63,291 stars，agent 记忆刚需 |
-| GitNexus | 🟢 活跃 | 32,602 stars，代码知识图谱 |
-| Andrej Karpathy Skills | 🟢 活跃 | 71,863 stars，品类引爆者 |
-| learn-claude-code | 🟢 活跃 | 45,161 stars |
-| claude-code-best-practice | 🟢 活跃 | 28,642 stars |
-| oh-my-claudecode | 🟢 活跃 | 23,109 stars |
-| oh-my-codex | 🟢 活跃 | 14,050 stars |
-| Strix (安全测试) | 🟢 活跃 | 22,925 stars |
-| Claude HUD | 🟢 活跃 | 15,746 stars |
-| Context Hub | 🟢 活跃 | 12,383 stars |
-| Archon | 🟢 活跃 | 15,563 stars，YAML 工作流 |
-| Claude Agent SDK Python | 🟢 活跃 | 6,007 stars，Anthropic 官方 |
-| Get Shit Done (GSD) | 🟢 活跃 | 52,066 stars |
-| HuggingFace ml-intern | 🟢 活跃 | 7,701 stars，HF 官方，周增 5,665 |
-| Zed Parallel Agents | 🟢 活跃 | Zed 1.0 正式版发布 |
-| Vercel Skills CLI | 🟢 活跃 | 15,448 stars |
-| context-mode | 🟢 活跃 | 9,401 stars |
-| Craft Agents OSS | 🟢 活跃 | 5,574 stars，GitHub 日榜 |
-| jcode | 🟢 活跃 | 1,886 stars，Rust 极致资源效率 |
-| Dirac | 🟢 活跃 | TerminalBench 2.0 登顶 |
-| Codex Everything Update | 🟢 活跃 | 后台电脑控制+90+ 插件 |
-| Cursor Automations | 🟡 不确定 | 收购影响待评估 |
-| Claude Code Review | 🟡 不确定 | 信任危机影响 |
-| Coasts | 🔴 降温 | 仅 264 stars，采纳率低 |
-| Claude Subconscious | 🟡 降温 | 2,466 stars，面临 Anthropic 内置替代风险 |
+| **Hermes Agent** | ✅ 活跃 | 108K stars，自进化 Agent 工程化推进 |
+| **OpenHuman** | ✅ 活跃（⚠️ 假星风险） | 23.5K stars 周增 17.8K，个人全量上下文管理 |
+| **CloakBrowser** | ✅ 活跃（⚠️ 道德灰区） | 连续两周 GitHub 周榜第一，15K+ stars，源码级隐身浏览器 |
+| **Gemini Spark** | ✅ 活跃 | Google I/O 发布个人常驻 Agent |
+| **Claude MCP Tunnels** | ✅ 活跃 | 企业 Agent 数据不出域方案公测 |
+| **Cloudflare × Stripe Agent Projects** | ✅ 活跃 | Agent 成为云平台一等公民客户 |
+| **UI-TARS-desktop** | ✅ 活跃 | 字节开源 32K stars，桌面/浏览器操控 Agent |
+| **Sim Studio** | ✅ 活跃 | 28K stars，画布式 Agent 编排 |
+| **12-factor-agents** | ✅ 活跃 | 22K stars，生产级 Agent 方法论指南 |
+| **Anthropic Conway/Orbit/Memory Files** | 🔜 未发布 | 代码泄露暴露常驻 Agent+主动推送+文件式记忆产品矩阵 |
 
-### AI Agent / 自动化
+**Agent 关键判断：**
+- 企业 Agent 治理成为刚需：Microsoft Agent Governance Toolkit、NVIDIA Verified Agent Skills、RAMPART
+- Agent 记忆赛道极度拥挤（9+ 项目上榜），MemPalace/AgentMemory/Memori/YourMemory/Honcho/δ-mem 等互相竞争
+- Agent 删库事件（4/27）加速安全基建采纳
 
-| 项目 | 状态 | 判断依据 |
+### 🧠 基础模型 / 平台（75 项）
+
+| 项目 | 状态 | 5 月动态 |
 |------|------|----------|
-| Hermes Agent | 🟢 活跃 | 108,034 stars，自进化 Agent 工程化 |
-| The Agency | 🟢 活跃 | 67,463 stars |
-| TradingAgents | 🟢 活跃 | 57,756 stars，GitHub Python 日榜第一 |
-| browser-use | 🟢 活跃 | 85,341 stars |
-| DeerFlow 2.0 | 🟢 活跃 | 55,257 stars，字节持续投入 |
-| Claude Mac Control + Dispatch | 🟢 活跃 | Windows 扩展大幅扩大覆盖 |
-| Obsidian Skills | 🟢 活跃 | 18,624 stars |
-| n8n-MCP | 🟢 活跃 | 17,216 stars |
-| Ruflo | 🟢 活跃 | 28,989 stars |
-| GenericAgent | 🟢 活跃 | 8,482 stars，周增 2,350（本周周榜） |
-| Multica | 🟢 活跃 | 16,739 stars |
-| CUA | 🟢 活跃 | 15,404 stars，周增 1,842 |
-| Cloudflare Dynamic Workers | 🟢 活跃 | Agent 基础设施三层布局完成 |
-| AgentScope | 🟢 活跃 | 22,625 stars |
-| Block Goose | 🟢 活跃 | 37,466 stars |
-| Beads | 🟢 活跃 | Steve Yegge 项目 |
-| CrabTrap | 🟢 活跃 | Agent 安全代理层 |
-| Agent Vault | 🟢 活跃 | 凭证代理基础设施 |
-| Memori | 🟢 活跃 | Agent 行为记忆 |
-| MiroFish | 🔴 降温 | 最后推送停在 3/20，两月无更新，GitHub 仓库疑似 404 |
-| Dexter | 🟡 不确定 | 20,676 stars 但增长放缓 |
-| Nyne | 🔴 不确定 | 种子轮后信息断层 |
-| OpenSandbox | 🟡 不确定 | 近一个月无重大更新 |
-| Moltbook | ⚫ 被收购 | Meta 收购后无独立更新 |
-| WorldMonitor | 🟡 不确定 | 50k stars 增速异常，假星风险 |
-| RuView WiFi DensePose | 🟡 不确定 | 44,955 stars 但应用场景窄 |
+| **DeepSeek V4** | ✅ 活跃 | V4-Pro 开源 SOTA，V4-Flash $0.14/$0.28，1M 上下文 |
+| **GPT-5.5 / 5.5 Instant** | ✅ 活跃 | Terminal-Bench 82.7%，幻觉减 52.5%，已替代 5.3 为默认 |
+| **Gemini 3.5 Flash** | ✅ 活跃 | Google I/O Day 1 主角，4x 输出速度，Terminal-Bench 76.2% |
+| **Gemini 3.1 Ultra** | ✅ 活跃 | 2M token 上下文旗舰 |
+| **Qwen 3.7-Max** | ✅ 活跃 | 非幻觉率 SOTA，Agent 工具调用优化 |
+| **Kimi K2.6** | ✅ 活跃 | Apache 2.0 开源，Terminal-Bench/SWE-Bench Pro 全面领先 |
+| **Cohere Command A+** | ✅ 活跃 | 首个完全 Apache 2.0 开源旗舰 218B/25B MoE |
+| **LFM2.5-8B-A1B** | ✅ 活跃 | 8B/1B active MoE，边缘推理非幻觉率碾压同级 |
+| **Onyx v3.0** | ✅ 活跃 | 21.8K stars 企业私有 AI 平台 |
 
-### 企业服务 / SaaS
+**基础模型关键判断：**
+- 开源模型追平闭源旗舰是 5 月最重要信号（DeepSeek V4 Pro、Kimi K2.6、Cohere Command A+）
+- 边缘推理成新战场：LFM2.5 系列、Needle 26M、Bonsai Image 4B
+- 语音 AI 赛道 5 月极度拥挤：Pocket TTS、Supertonic 3、MOSS-TTS、OpenAI Realtime Voice 同月发布
 
-| 项目 | 状态 | 判断依据 |
+### 🏢 企业服务 / SaaS（35 项）
+
+| 项目 | 状态 | 5 月动态 |
 |------|------|----------|
-| OpenBB | 🟢 活跃 | 64,823 stars，成功转型 AI-native 金融数据平台 |
-| Slack AI 30 Features | 🟢 活跃 | 企业 AI 渗透加速标志 |
-| Salesforce Headless 360 | 🟢 活跃 | 企业从 GUI→Agent API 不可逆 |
-| OpenAI Workspace Agents | 🟢 活跃 | 研究预览 |
-| Intuit Intelligence | 🟢 活跃 | 85% 复用率验证 AI-HI 模式 |
-| FinceptTerminal | 🟢 活跃 | 18,320 stars，周增 4,505 |
-| Cloudflare AI Crawl Control | 🟢 活跃 | AI 数据海关角色 |
-| ChatGPT for Excel | 🟢 活跃 | AI 嵌入办公工具 |
-| Agent 365 | 🟢 活跃 | 微软 Agent 治理 |
-| DiligenceSquared | 🔴 不确定 | 种子轮后无后续公开报道 |
-| Forethought | ⚫ 被收购 | Zendesk 完成整合 |
-| InterPositive | ⚫ 被收购 | Netflix 收购 |
+| **Claude for Small Business** | ✅ 活跃 | 15 个预置 Agent 工作流，免费公益定位 |
+| **Anthropic Enterprise AI Services JV** | ✅ 活跃 | 与 Blackstone/GS 成立合资公司估值 15 亿 |
+| **IBM watsonx Orchestrate** | ✅ 活跃 | Think 2026 多 Agent 控制平面+IBM Bob GA |
+| **Google Managed Agents API** | ✅ 活跃 | 一个 API 部署完整 Agent |
+| **Claude Platform on AWS** | ✅ 活跃 | GA，打破 Bedrock 功能滞后限制 |
+| **FinceptTerminal** | ✅ 活跃 | 18.3K stars，开源 Bloomberg 替代 |
+| **Salesforce Headless 360** | ✅ 活跃 | 100+ 新工具，企业 CRM 转向 Agent API |
 
-### 多模态生成 / 创意工具
+### 🎨 多模态生成 / 创意工具（26 项）
 
-| 项目 | 状态 | 判断依据 |
+| 项目 | 状态 | 5 月动态 |
 |------|------|----------|
-| ChatGPT Images 2.0 | 🟢 活跃 | OpenAI 正式推出 |
-| Claude Design | 🟢 活跃 | HN 777 分 |
-| Pixelle-Video | 🟢 活跃 | 8,429 stars，周增 2,064 |
-| Open-Generative-AI | 🟢 活跃 | 10,422 stars，周增 3,799 |
-| CorridorKey | 🟢 活跃 | 12,589 stars，影视后期开源工具 |
-| Voicebox | 🟢 活跃 | 16,264 stars |
-| Sora | ⚫ 已关停 | OpenAI 3 月宣布关停 |
-| Runway Builders Fund | 🟡 不确定 | 生态投资非产品 |
+| **Claude Design** | ✅ 活跃 | HN 777 分，AI 设计工具新赛道 |
+| **SANA-WM** | ✅ 活跃 | NVIDIA 开源 2.6B 参数视频世界模型 |
+| **MoneyPrinterTurbo** | ✅ 活跃 | 74K+ stars，DeepSeek V4 催化新用户涌入 |
+| **CorridorKey** | ✅ 活跃 | 12.5K stars 绿幕抠像 AI |
+| **Gemini Omni** | ✅ 活跃 | 对话式视频编辑+物理仿真 |
+| **Sora** | ❌ 已关停 | 持续关停，迪士尼合作取消 |
 
-### AI 安全
+### 🔒 AI 安全 / 事件（合并安全相关 ~30 项）
 
-| 项目 | 状态 | 判断依据 |
-|------|------|----------|
-| Project Glasswing | 🟢 活跃 | 12 家公司联合发起 |
-| OpenAI Privacy Filter | 🟢 活跃 | 基础设施级组件 |
-| Shannon (渗透测试) | 🟢 活跃 | 36,463 stars |
-| Heretic (去审查) | 🟡 争议 | 证明安全对齐脆弱 |
-| PyTorch Lightning 供应链攻击 | ⚠️ 事件 | 恶意代码植入 |
-| Claude Code OpenClaw 歧视 | ⚠️ 事件 | 今日爆发 |
+**5 月安全大事记：**
+- **PyTorch Lightning 供应链攻击**（5/1）：跨 PyPI/npm 蠕虫传播，影响所有 AI 训练环境
+- **Anthropic 信任危机持续**：Claude Code OpenClaw 歧视（5/1）、HERMES.md bug（4/30）
+- **GitHub VSCode 扩展入侵 3800 仓库**（5/21）
+- **Microsoft Copilot Cowork 文件外泄**（5/26）：Agent 架构级安全缺陷
+- **CTF 竞赛死亡宣告**（5/17）：GPT-5.5 Pro 一键解 Insane 级题目
+- **Anthropic NLA 突破**（5/9）：发现模型知道自己在被测试
+- **YouTube AI 自动标注上线**（5/29）：视频平台首次大规模部署 AI 内容检测
 
-### 行业动态
+**新兴安全工具：**
+- Microsoft RAMPART（pytest 原生 Agent 安全测试）
+- Perplexity Bumblebee（供应链安全扫描）
+- Anthropic-Cybersecurity-Skills（754 项安全技能，12.9K stars）
 
-| 事件 | 影响 |
+### 📰 行业动态 / 并购
+
+| 事件 | 日期 | 影响 |
+|------|------|------|
+| Anthropic 首次盈利 | 5/23 | Q2 营收 $10.9B，经营利润 $559M，比预期提前两年 |
+| OpenAI 秘密递交 IPO | 5/23 | 目标估值 $1T+，9 亿周活 $25B ARR |
+| Karpathy 加入 Anthropic | 5/20 | HN 1104 分，前 Tesla AI 总监/OpenAI 联合创始人 |
+| Anthropic 收购 Stainless | 5/19 | Agent 连接层基建自建，MCP 工具链闭环 |
+| Mistral 收购 Emmi AI | 5/20 | 进军 Physics AI 工业工程 |
+| Anthropic 估值超 OpenAI | 6/1 | 成为全球最有价值 AI 创业公司 |
+| OpenRouter $1.13 亿 B 轮 | 6/1 | AI 模型路由中间层获资本验证 |
+| SpaceX 收购 Cursor | 4/22→5 月持续 | 600 亿美元，AI 工具史上最大交易 |
+
+### 🗣️ 语音 AI（5 月高密度赛道）
+
+5 月同时活跃的语音 AI 项目超过 10 个：
+- **OpenAI Realtime Voice API**：GPT-5 级推理语音 Agent，$32/$64 per M tokens
+- **Pocket TTS**（Kyutai Labs）：CPU-only 100M 参数，6 语种
+- **Supertonic 3**（HYBE Supertone）：31 语种 ONNX 端侧
+- **MOSS-TTS**（复旦 OpenMOSS）：v1.5+SoundEffect v2.0 双版本
+- **VoxCPM2**（OpenBMB）：30 语种无 tokenizer TTS
+
+### 🖥️ Google I/O 2026（5/19-20）
+
+5 月最重要的平台级事件：
+- **Gemini 3.5 Flash**：Agent 工作流旗舰，4x 速度
+- **Gemini Spark**：个人常驻 Agent
+- **Googlebook + Magic Pointer**：AI 原生笔记本取代 Chromebook
+- **Antigravity 2.0**：Agent 开发平台
+- **Managed Agents API**：一键部署
+- **Gemini Omni**：多模态视频编辑
+
+---
+
+## 三、5 月掉队或消失的项目
+
+| 项目 | 状态 | 说明 |
+|------|------|------|
+| **MiroFish** | ❌ 停止更新 | GitHub 仓库 404，典型一次性爆红后消失 |
+| **DeepSeek Engram** | ❌ 停止更新 | 4198 stars 但最后推送停在 1/14，三个月无代码更新 |
+| **Sora** | ❌ 已关停 | 2026 年最戏剧化的战略撤退 |
+| **GPT-5.4** | ⬇️ 降温 | 被 GPT-5.5 取代为次旗舰 |
+| **Xiaomi Hunter Alpha** | ⬇️ 降温 | 初始话题性消退后零产品动态 |
+| **Qutwo** | ⬇️ 降温 | 量子+AI 叙事冷却 |
+| **Coasts** | ⬇️ 降温 | 仅 264 stars，概念好但采纳率极低 |
+| **DiligenceSquared** | ❓ 不确定 | 种子轮后无后续公开报道 |
+| **Nyne** | ❓ 不确定 | 种子轮融资后信息断层 |
+
+---
+
+## 四、假星风险标记
+
+5 月 GitHub 假星问题进一步恶化（CMU 论文发现 600 万假星）。以下项目增速异常需持续观察：
+
+| 项目 | Stars | 异常信号 |
+|------|-------|----------|
+| ECC | 200K+ | 单月增长极端 |
+| garrytan/gstack | 96K | 个人品牌效应放大 |
+| MoneyPrinterTurbo | 74K+ | 5 月底突然回潮 |
+| Matt Pocock Skills | 57K | 周增 35K |
+| Understand-Anything | 47K+ | 周增 22K |
+| taste-skill | 30K+ | 周增 10K+，护城河接近零 |
+| OpenHuman | 23.5K | 周增 17.8K |
+| Ruflo | 47.7K | 单人核心维护 |
+| TradingAgents | 72.5K | 增速异常 |
+
+---
+
+## 五、最值得继续跟踪的项目
+
+### 🏆 S 级（持续证明产品-市场匹配）
+1. **DeepSeek V4**——开源 SOTA 持续领先，定价颠覆，1M 上下文标配
+2. **Claude Opus 4.8**——信任危机修复关键版本，Dynamic Workflows 是差异化
+3. **GPT-5.5**——Terminal-Bench 领先，但定价压力大
+4. **Gemini 3.5 Flash**——速度×能力×成本三角最优解
+5. **Kimi K2.6**——Apache 2.0 开源编码模型持续霸榜
+
+### 🥇 A 级（赛道领先或方向正确）
+6. **Agent Skills 标准化生态**（OpenAI/HuggingFace/Vercel/Flutter/dotnet Skills）
+7. **Anthropic Finance Agents**——模板化金融 Agent 交付
+8. **Cohere Command A+**——首个完全 Apache 2.0 开源旗舰
+9. **CodeGraph**——代码知识图谱实测有效
+10. **Warp 开源**——Agent 原生终端
+11. **Cloudflare Agent 基建三层**（Dynamic Workers + AI Platform + Email Service）
+12. **Microsoft Agent Governance Toolkit**——OWASP Agentic Top 10 全覆盖
+
+### 🥈 B 级（值得观察但需要更多验证）
+13. **Anthropic Conway/Orbit/Memory Files**——常驻 Agent 产品矩阵，但尚未发布
+14. **Googlebook + Magic Pointer**——AI 原生硬件，秋季出货
+15. **OpenAI Realtime Voice API**——语音 Agent 最完整平台，但定价偏高
+16. **LiteParser**——LlamaIndex 出品 Rust 文档解析器
+17. **GLM-OCR**——0.9B 参数登顶 OmniDocBench
+
+---
+
+## 六、5 月关键数据
+
+| 指标 | 数值 |
 |------|------|
-| SpaceX $60B 收购 Cursor | AI 工具史上最大收购 |
-| Microsoft × OpenAI 结束独家 | 合作六年后最大结构性变化 |
-| Google $40B 投资 Anthropic | 史上最大单笔 AI 投资 |
-| OpenAI $122B 融资 | 史上最大 AI 融资轮 |
-| GitHub 假星经济 | 600 万假星动摇开源信任 |
-| SWE-bench Verified 退役 | AI 最重要编码基准正式退役 |
-| China 阻止 Meta 收购 Manus | AI 跨国并购地缘合规 |
-| GitHub Copilot 按量计费 | 影响数百万开发者预算 |
+| CSV 总项目数 | 500 |
+| 5 月新增项目 | ~191 |
+| 活跃状态项目 | ~285 |
+| 降温/停更/关闭 | ~8 |
+| 被收购 | ~6（含 Stainless、Emmi AI、Cursor 待完成） |
+| 事件 | ~29 |
+| 假星高风险项目 | 9+ |
 
 ---
 
-## 三、本月最值得继续跟踪的项目
+## 七、5 月总结判断
 
-### 🏆 S 级（行业格局级）
+1. **模型竞争格局**：六大阵营（OpenAI/Anthropic/Google/DeepSeek/Qwen/Kimi）同时推新，开源模型首次在多个编码基准追平闭源旗舰。价格战加速，DeepSeek V4 Flash $0.14/M tokens 重新定义底价。
 
-1. **DeepSeek V4** — 开源前沿模型标杆，API 兼容性好，直接影响闭源模型定价策略
-2. **Warp Open Source** — AI-native 终端+Agent 环境，OpenAI 赞助，43k+ stars
-3. **GPT-5.5** — Terminal-Bench 登顶，API 已开放，模型迭代速度惊人
-4. **Anthropic 信任危机** — 九连击持续发酵，free-claude-code 和 ds2api 是直接反映
-5. **Microsoft × OpenAI 协议重构** — 多云分发开启新格局
+2. **Agent 生态进入治理期**：从"先上 Agent"转向"先治理 Agent"。Microsoft Agent Governance Toolkit、NVIDIA Verified Agent Skills、RAMPART 标志着企业 Agent 安全从边缘走向核心。
 
-### 🥇 A 级（赛道定义级）
+3. **信任危机分水岭**：Anthropic 在 4-5 月遭遇 9 次信任打击（cache 降级→封杀第三方→源码泄露→Pro 移除→质量事故→OpenClaw 歧视→HERMES.md→Claude Code 宕机→Copilot 文件外泄），但 Q2 首次盈利+$30B 融资+Karpathy 加入+收购 Stainless 展示了惊人韧性。
 
-6. **Matt Pocock Skills** — Agent Skills 品类增速最快（周增 30k+）
-7. **Superpowers** — 128k stars，Claude Code 生态最大项目
-8. **CUA** — 计算机操控 Agent 基建层
-9. **GenericAgent** — 自进化 agent 技能树方向
-10. **HuggingFace ml-intern** — ML 全链路自动化
-11. **Cloudflare Agent 基础设施** — Dynamic Workers + AI Platform + Artifacts + Email Service 四层布局
-12. **Zed 1.0** — IDE 内多 Agent 并行编码
+4. **公众 AI 反弹**："Tired of AI" HN 1961 分、Chrome 静默安装 1198 分——opt-in 将成为产品信任底线。
 
-### 🥈 B 级（重要跟踪）
-
-13. Kimi K2.6 — 开源编码模型追平闭源
-14. Qwen 3.6 系列 — 全线覆盖
-15. FinceptTerminal — 开源 Bloomberg 替代
-16. OpenBB — 金融数据平台转型成功
-17. Dirac — coding agent 上下文管理创新
-18. Agent Vault / CrabTrap — Agent 安全基建
+5. **SWE-bench 退役**：AI 最重要编码基准正式退役，评测体系面临系统性信任危机。
 
 ---
 
-## 四、已明显掉队或消失的项目
-
-### ❌ 已关停/退场
-- **Sora** — OpenAI 宣布关停，算力转向机器人和 AGI
-- **SWE-bench Verified** — 正式退役，59.4% 审计样本有缺陷测试
-
-### 📉 明显掉队/停滞
-- **MiroFish** — GitHub 仓库疑似已删除（404），最后推送 3/20，典型一次性爆红后消失
-- **DeepSeek Engram** — 最后代码推送 1/14，三个月无更新，论文热度完全消退
-- **Xiaomi Hunter Alpha** — 初始话题性消退后零后续动态
-- **Qutwo** — 量子+AI 叙事冷却，无实质产品进展
-- **Coasts** — 仅 264 stars，多 agent 并行隔离环境概念好但无人采纳
-- **DiligenceSquared** — 种子轮后完全信息断层
-- **Nyne** — 种子轮融资后信息断层
-
-### ⚠️ 假星/增速异常需警惕
-- **WorldMonitor** — 50k stars 增速异常
-- **MemPalace** — 9 天 4.3 万星，AAAK 压缩层被社区纠正为误导
-- 多个 Agent Skills 类仓库增速超出正常范围（CMU 研究发现 600 万假星）
-
----
-
-## 五、批判性观察
-
-### 1. Agent Skills 品类爆发但护城河近零
-本月 GitHub 上 Agent Skills 类仓库爆发（Matt Pocock Skills 周增 30k、Karpathy Skills 72k、Addy Osmani 等），但本质都是 system prompt engineering，技术壁垒极低。这更像是「.claude 目录」文化运动而非持久产品品类。
-
-### 2. Anthropic 信任危机是真实的
-从 Cache TTL 降级到 OpenClaw 歧视性封杀，九连击不是偶发事故而是系统性问题。free-claude-code 两周飙到 19k stars、HN「I cancelled Claude」734 分，这是用户用脚投票。Google $40B 投资可能缓解容量问题但无法修复信任。
-
-### 3. 模型迭代速度超出预期
-GPT-5.4 → 5.5 间隔约 5 周、DeepSeek V3 → V4 间隔数月、Qwen 3.6 三变体密集发布——模型层正在加速商品化，真正的竞争壁垒在 Agent 运行时和生态锁定。
-
-### 4. GitHub 假星问题严重
-CMU ICSE 2026 论文发现 600 万假星、18,617 仓库参与。AI/LLM 是最大非恶意类别。本报告中多个高星项目增速异常（WorldMonitor 50k、MemPalace 4.3 万/9 天），星数不再是可靠的项目质量指标。
-
-### 5. Agent 安全基建加速成型
-CrabTrap（Brex）、Agent Vault（Infisical）、OpenAI Privacy Filter、Project Glasswing——生产级 Agent 安全基建从概念走向开源产品。AI Agent 删库事件是最好的催化剂。
-
----
-
-## 六、数据说明
-
-- 本月 DuckDuckGo 搜索引擎被限流，部分项目依赖上月数据+GitHub 实时 Trending 交叉验证
-- 星数增长数据来自 GitHub Trending 日/周榜实际抓取（2026-05-01）
-- 未能逐一验证所有 150+ 项目官网，对标记为「不确定」的项目建议下月重点核查
-
----
-
-*报告生成工具：OpenClaw AI Tracker*  
-*下次巡检：2026-06-01*
+*下次巡检：2026-07-01*
